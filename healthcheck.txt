@@ -1,0 +1,41 @@
+-CaasStreamingMonitoring services-->is used to send daily health check report for services.
+-At 3:30 we get daily health check report.for PROD,PRE,DEV enivornment.
+-if you find that if one of the mails of CaasStreaming services is missing,go to openshift for DEV,PRE,PROD of which the mail you find missing.go to the "aws 
+health check service" and check if the service is up and running using pods and check logs as well.if not up and running make it up.
+
+-streaming services are always found in caas data ingestion paas.
+-services starting with "aws" points to oracle where as without aws points to oracle.without aws conected to nuodb,hence scale down.need to check 
+aws services only.
+-------------------------------------------------------------------------------
+-After going for health check if any justcheck that services which are not reading the data are they up and running.if not report.
+-if they are up just wait for three days including current day of not reading data,if they are even up you need to report for further checkups.
+-last update column in the table shows,on which date is the data read by service.
+-In every case make sure that the services must be up and running.
+-all ok means all green,yellow three day buffer.
+-kibana logs show the exceptions within the prod and it gives status of healthcheck.
+
+---------------------------------------------------------------------------------------------- 
+WHEN MORE THAN THREE DAYS DATA READING EXCEEDS.
+
+ -acms aur non acms ka procedure alg alg h.
+ -PCAS ->TOPIC->ORACLE(for non ACMS table).In this we need to check that the last data time recieved in PCAS is same as in oracle or not.
+ we need to match CONTCURR column of the two,if both matches then the data is in sync else not.
+-ACMS-contcurr colum check.
+-Parameter-offset table check.
+this way we check the real issue.
+agar offset table me same date h,jo healthcheck ki table(mail wali) me pdi h....report.
+-aur date alag h mtlb healthcheck report k bd data aa gya h.
+
+-----------------------------------------------------------------------------------
+-now I need to check the offset table,go to the service,then go to the entity,then check the offset table for that.check the table name,search that with in db.
+-find groupid in yml files search that within db.check update date column.
+-if the date is same as the date in report then report seniors,means if the updated date in table is not matching buffer criteria then report,
+    if date is next to date then service has started reading the data.  
+in report send complete  report and logs for kibana prod.
+
+
+ 
+ 
+
+
+ 
